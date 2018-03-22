@@ -171,6 +171,7 @@ catch {
 Add-Type -AssemblyName System.Windows.Forms
 System.Windows.Forms.MessageBox]::Show("Couldn't Send The Email!");
 }
+}
 
 
 #Don't hate on my code or spelling its my first time writing powershell scripts :)
