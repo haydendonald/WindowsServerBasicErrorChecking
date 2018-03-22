@@ -46,7 +46,7 @@ foreach($i in $diskStatus) {
 if ($i.OperationalStatus -ne "OK" -or $i.HealthStatus -ne "Healthy") {
     if($checkState -eq 0) {"Problem Disk(s) Found!"; $checkState = 1;}
     $i | Out-String
-    $status = "Disk Error!";
+    if($status -eq "OK") {$status = "Disk Error!";} else {$status += "Disk Error!";}
     }
 }
 if($status -eq "OK"){"Good";}
@@ -61,7 +61,7 @@ foreach($i in $storagePool) {
 if ($i.OperationalStatus -ne "OK" -or $i.HealthStatus -ne "Healthy") {
     if($checkState -eq 0) {"Problem Storage Pool(s) Found"; $checkState = 1;}
     $i | Out-String
-    $status += " Storage Pool Error!";
+    if($status -eq "OK") {$status = "Storage Pool Error!";} else {$status += "Storage Pool Error!";}
     }
 }
 if($status -eq "OK"){"Good";}
@@ -72,10 +72,10 @@ $checkState = 0;
 
 
 foreach($i in $virtualDisk) {
-if ($i.OperationalStatus -ne "InService" -or $i.HealthStatus -ne "Healthy") {
+if ($i.OperationalStatus -ne "OK" -or $i.HealthStatus -ne "Healthy") {
     if($checkState -eq 0) {"Problem Virtual Disk(s) Found!"; $checkState = 1;}
     $i | Out-String
-    $status += " Virtual Disk Error!";
+    if($status -eq "OK") {$status = "Virtual Disk Error!";} else {$status += "Virtual Disk Error!";}
     }
 }
 if($status -eq "OK"){"Good";}
