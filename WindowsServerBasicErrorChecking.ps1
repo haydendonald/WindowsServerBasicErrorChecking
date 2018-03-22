@@ -84,8 +84,9 @@ if($status -eq "OK"){"Good";}
 
 #Send out email report!
 if($status -ne "OK") {
-if($showErrorDialog -eq 1) {
-[System.Windows.MessageBox]::Show("There Is A Problem With $serverName
+if($showErrorDialog -eq 1) 
+Add-Type -AssemblyName System.Windows.Forms{
+[System.Windows.Forms.MessageBox]::Show("There Is A Problem With $serverName
 
 Status:
 $status
@@ -132,7 +133,8 @@ Check out my github at http://github.com/haydendonald
 "Done!"
 }
 catch {
-System.Windows.MessageBox]::Show("Couldn't Send The Email!");
+Add-Type -AssemblyName System.Windows.Forms
+System.Windows.Forms.MessageBox]::Show("Couldn't Send The Email!");
 }
 }
 }
