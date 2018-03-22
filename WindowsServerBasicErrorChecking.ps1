@@ -85,9 +85,10 @@ if($status -eq "OK"){"Good";}
 
 #Send out email report!
 if($status -ne "OK") {
-if($showErrorDialog -eq 1) 
-Add-Type -AssemblyName System.Windows.Forms{
+if($showErrorDialog -eq 1) {
+Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.MessageBox]::Show("There Is A Problem With $serverName
+}
 
 Status:
 $status
@@ -138,7 +139,7 @@ Add-Type -AssemblyName System.Windows.Forms
 System.Windows.Forms.MessageBox]::Show("Couldn't Send The Email!");
 }
 }
-else if($emailOnGood -eq 1){
+elseif($emailOnGood -eq 1){
 try {
 "Sending out a email notification";
 Send-MailMessage -From $From -to $To -Subject "$serverName RWas Checked And Reported OK" -SmtpServer $SMTPServer -port $SMTPPort -UseSsl -Credential $cred -Verbose -Body "
@@ -169,6 +170,6 @@ catch {
 Add-Type -AssemblyName System.Windows.Forms
 System.Windows.Forms.MessageBox]::Show("Couldn't Send The Email!");
 }
-}
+}}
 
 #Don't hate on my code or spelling its my first time writing powershell scripts :)
