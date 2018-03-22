@@ -139,10 +139,11 @@ Add-Type -AssemblyName System.Windows.Forms
 System.Windows.Forms.MessageBox]::Show("Couldn't Send The Email!");
 }
 }
+}
 elseif($emailOnGood -eq 1){
 try {
 "Sending out a email notification";
-Send-MailMessage -From $From -to $To -Subject "$serverName RWas Checked And Reported OK" -SmtpServer $SMTPServer -port $SMTPPort -UseSsl -Credential $cred -Verbose -Body "
+Send-MailMessage -From $From -to $To -Subject "$serverName Was Checked And Reported OK" -SmtpServer $SMTPServer -port $SMTPPort -UseSsl -Credential $cred -Verbose -Body "
 $serverName Reported OK
 
 The server is happy lets go party!
@@ -170,6 +171,6 @@ catch {
 Add-Type -AssemblyName System.Windows.Forms
 System.Windows.Forms.MessageBox]::Show("Couldn't Send The Email!");
 }
-}}
+
 
 #Don't hate on my code or spelling its my first time writing powershell scripts :)
