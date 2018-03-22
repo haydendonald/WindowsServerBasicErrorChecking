@@ -13,6 +13,7 @@ $smtpserver = "smtp-mail.outlook.com"
 #Script Settings
 $showErrorDialog = 1;
 $emailOnError = 1;
+$emailOnGood = 1;
 $serverName = "GenericServer";
 
 
@@ -136,6 +137,37 @@ catch {
 Add-Type -AssemblyName System.Windows.Forms
 System.Windows.Forms.MessageBox]::Show("Couldn't Send The Email!");
 }
+}
+else if($emailOnGood -eq 1){
+try {
+"Sending out a email notification";
+Send-MailMessage -From $From -to $To -Subject "$serverName RWas Checked And Reported OK" -SmtpServer $SMTPServer -port $SMTPPort -UseSsl -Credential $cred -Verbose -Body "
+$serverName Reported OK
+
+The server is happy lets go party!
+
+It Is Reporting A Status Of 
+$status
+
+More Information:
+
+Disk Status:
+$frendlyDiskStatus
+
+Storage Pool Status:
+$friendlyStoragePool
+
+Virtual Disk Status:
+$friendlyVirtualDiskStatus
+
+This script is by Hayden Donald
+Check out my github at http://github.com/haydendonald
+";
+"Done!"
+}
+catch {
+Add-Type -AssemblyName System.Windows.Forms
+System.Windows.Forms.MessageBox]::Show("Couldn't Send The Email!");
 }
 }
 
